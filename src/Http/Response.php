@@ -124,24 +124,24 @@ class Response extends DingoResponse
      * @return \Nodes\Api\Http\Response
      * @throws \InvalidArgumentException
      */
-    public function setStatusCode($statusCode, $text = null)
+    public function setStatusCode(int $code, $text = null)
     {
         // Fallback status code message if missing
         if (! empty($text)) {
             $statusText = $text;
-        } elseif (! empty(self::$statusTexts[$statusCode])) {
-            $statusText = self::$statusTexts[$statusCode];
+        } elseif (! empty(self::$statusTexts[$code])) {
+            $statusText = self::$statusTexts[$code];
         } else {
             $statusText = 'Undefined code';
         }
 
         // Set status code and text
-        $this->statusCode = $statusCode;
+        $this->statusCode = $code;
         $this->statusText = $statusText;
 
         // Validate status code
         if ($this->isInvalid()) {
-            throw new InvalidArgumentException(sprintf('The HTTP status code "%s" is not valid.', $statusCode));
+            throw new InvalidArgumentException(sprintf('The HTTP status code "%s" is not valid.', $code));
         }
 
         return $this;
