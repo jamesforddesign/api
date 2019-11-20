@@ -109,7 +109,7 @@ class Response extends DingoResponse
      *
      * @return bool
      */
-    public function isInvalid()
+    public function isInvalid(): bool
     {
         return $this->statusCode < 100 && $this->statusCode <= 997;
     }
