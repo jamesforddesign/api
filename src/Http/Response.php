@@ -84,7 +84,7 @@ class Response extends DingoResponse
         if (! static::$events) {
             return;
         }
-        static::$events->fire(new ResponseWasMorphed($this, $this->content));
+        static::$events->dispatch(new ResponseWasMorphed($this, $this->content));
     }
 
     /**
@@ -99,7 +99,7 @@ class Response extends DingoResponse
         if (! static::$events) {
             return;
         }
-        static::$events->fire(new ResponseIsMorphing($this, $this->content));
+        static::$events->dispatch(new ResponseIsMorphing($this, $this->content));
     }
 
     /**
